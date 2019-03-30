@@ -35,6 +35,34 @@ namespace WPF_Metro_GUI
             get { return _ChildWindow; }
             set { _ChildWindow = value; }
         }
+
+        /// <summary>
+        /// Gets or sets the tabs.
+        /// </summary>
+        /// <value>
+        /// The tabs.
+        /// </value>
+        public List<Tab> Tabs
+        {
+            get { return _Tabs; }
+            set { _Tabs = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the selected tab.
+        /// </summary>
+        /// <value>
+        /// The selected tab.
+        /// </value>
+        public Tab SelectedTab
+        {
+            get { return _SelectedTab; }
+            set
+            {
+                if (_Tabs.Contains(value))
+                    _SelectedTab = value;
+            }
+        }
         #endregion
 
         #region Constructors        

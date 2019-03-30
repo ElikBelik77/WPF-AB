@@ -107,7 +107,7 @@ namespace WPF_Metro_GUI.Application_Blocks
             this._SelectedIcon = selectedIcon;
             this._TabButton = new Button()
             {
-                Style = App.Current.TryFindResource("ButtonStyleNoHighlighting") as Style,
+                Style = App.Current.TryFindResource("ButtonStyleNoHighlighting") as System.Windows.Style,
                 Background = new ImageBrush(unselectedIcon.Source),
                 Content = "",
                 Width = 50,

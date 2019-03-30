@@ -7,7 +7,7 @@
     <ProjectGuid>{9D10DB81-BA41-4D5F-BC27-1E9782FFEE89}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>WPF_Metro_GUI</RootNamespace>
-    <AssemblyName>WPF_Metro_GUI</AssemblyName>
+    <AssemblyName>WPF Metro GUI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -53,7 +56,15 @@
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ApplicationManager.cs" />
+    <Compile Include="Networking\IDataClient.cs" />
+    <Compile Include="Networking\INotifiable.cs" />
+    <Compile Include="Style\ColorPalette.cs" />
+    <Compile Include="Style\IColorable.cs" />
+    <Compile Include="Style\IconLoader.cs" />
+    <Compile Include="Style\IFontable.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,6 +73,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Application Blocks\ApplicationBlock.cs" />
+    <Compile Include="Application Blocks\ApplicationBlockMenu.cs" />
+    <Compile Include="Application Blocks\Tab.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -85,6 +99,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

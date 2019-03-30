@@ -3,6 +3,8 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Newtonsoft.Json.Linq;
+using WPF_Metro_GUI.Networking;
 using WPF_Metro_GUI.Style;
 
 namespace WPF_Metro_GUI.Application_Blocks
@@ -13,14 +15,14 @@ namespace WPF_Metro_GUI.Application_Blocks
     /// <seealso cref="System.Windows.Controls.DockPanel" />
     /// <seealso cref="WPF_Metro_GUI.IColorable" />
     /// <seealso cref="WPF_Metro_GUI.IFontable" />
-    public abstract class ApplicationBlock : DockPanel, IColorable, IFontable
+    public abstract class ApplicationBlock : DockPanel, IColorable, IFontable, INotifiable
     {
         #region Member Variables
         private TextBlock _TitleLabel;
         /// <summary>
         /// The client that the block uses for updates.
         /// </summary>
-        protected ObserverSocketClient _Client;
+        protected IDataClient _Client;
 
         /// <summary>
         /// The current theme of the block.
@@ -63,13 +65,13 @@ namespace WPF_Metro_GUI.Application_Blocks
         /// <param name="client">The client.</param>
         /// <param name="title">The title.</param>
         /// <param name="icon">The icon.</param>
-        public ApplicationBlock(ObserverSocketClient client, string title, Image icon)
+        public ApplicationBlock(IDataClient client, string title, Image icon)
         {
             _Client = client;
             this.OnHelpButtonClick = new MouseButtonEventHandler(this.ShowHelp);
-            _BlockMenu = new ApplicationBlockMenu(20, 20);
-            _BlockMenu.AddItem(IconLoader.GetImage(IconLoader.PinIconPath, 20, 20), null);
-            _BlockMenu.AddItem(IconLoader.GetImage(IconLoader.HelpIconPath, 20, 20), this.OnHelpButtonClick);
+            //_BlockMenu = new ApplicationBlockMenu(20, 20);
+            //_BlockMenu.AddItem(IconLoader.GetImage(IconLoader.PinIconPath, 20, 20), null);
+            //_BlockMenu.AddItem(IconLoader.GetImage(IconLoader.HelpIconPath, 20, 20), this.OnHelpButtonClick);
             //this.Children.Add(_BlockMenu);
             this.TitleLabel = new TextBlock()
             {
@@ -170,6 +172,11 @@ namespace WPF_Metro_GUI.Application_Blocks
         private void ShowHelp(object sender, MouseEventArgs args)
         {
             ShowHelp();
+        }
+
+        public virtual void Notify(JObject response, string id)
+        {
+
         }
     }
 }
